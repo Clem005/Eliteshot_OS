@@ -1,0 +1,90 @@
+:root {
+    --bg: #0a0c0e;
+    --card: rgba(22, 26, 30, 0.9);
+    --neon: #00f2ff;
+    --text: #e2e8f0;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+.os-container { display: flex; height: 100vh; }
+
+.sidebar {
+    width: 260px;
+    background: #000;
+    border-right: 1px solid #222;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-area { display: flex; align-items: center; gap: 10px; margin-bottom: 50px; }
+.logo-area h1 { font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
+.logo-area span { color: var(--neon); }
+.neon-dot { width: 8px; height: 8px; background: var(--neon); border-radius: 50%; box-shadow: 0 0 10px var(--neon); }
+
+.workspace {
+    flex: 1;
+    padding: 40px;
+    background: radial-gradient(circle at top right, #161b22, #0a0c0e);
+    overflow-y: auto;
+}
+
+.drop-card {
+    background: var(--card);
+    border: 1px dashed #333;
+    border-radius: 16px;
+    padding: 60px;
+    text-align: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.drop-card:hover { border-color: var(--neon); background: rgba(0, 242, 255, 0.03); }
+
+.drop-icon { font-size: 40px; color: var(--neon); margin-bottom: 10px; }
+
+.card {
+    background: var(--card);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 4px;
+    background: #000;
+    border-radius: 2px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--neon);
+    box-shadow: 0 0 8px var(--neon);
+    transition: 0.5s;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.system-monitor {
+    margin-top: auto;
+    background: #111;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 10px;
+}

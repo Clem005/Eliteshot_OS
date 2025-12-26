@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ELITESHOT OS // TACTICAL COMMAND</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="os-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="neon-dot"></div>
+                <h1>ELITESHOT<span>OS</span></h1>
+            </div>
+            <div class="system-monitor">
+                <div class="monitor-label">HARDWARE: i3-CORE</div>
+                <div class="monitor-meta">STATUS: ACTIVE</div>
+            </div>
+        </aside>
+
+        <main class="workspace">
+            <div class="drop-card" id="drop-zone">
+                <input type="file" id="file-input" multiple hidden>
+                <div class="drop-icon">+</div>
+                <h2>INITIALIZE TACTICAL FEED</h2>
+                <p>DRAG MATCH FOOTAGE (.MP4) TO START AI EXTRACTION</p>
+            </div>
+            <div class="project-grid" id="project-list"></div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

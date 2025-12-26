@@ -1,0 +1,5 @@
+projects/
+__pycache__/
+*.mp4
+*.pkl
+.git/

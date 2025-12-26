@@ -1,0 +1,4 @@
+﻿yolov8x.pt
+projects/
+*.mp4
+__pycache__/
