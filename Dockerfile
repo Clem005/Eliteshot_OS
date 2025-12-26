@@ -1,14 +1,21 @@
-# Use the full version of Python 3.10. 
-# It's larger, but it's the most stable and avoids 'apt-get' mirror errors.
-FROM python:3.10
+# Use Ubuntu as the base instead of Debian/Python-Slim
+FROM ubuntu:22.04
 
-# These are the only two small libraries needed for OpenCV to show images
+# Prevent interactive prompts during installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Use a more reliable mirror and install Python + OpenCV dependencies
 RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3-pip \
     libgl1-mesa-glx \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+# Ensure we use the right python/pip commands
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Copy requirements and install
 COPY requirements.txt .
@@ -16,10 +23,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your code
 COPY . .
-
-# Set environment variables for Python
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
 
 EXPOSE 8000
 
