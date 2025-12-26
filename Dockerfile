@@ -1,13 +1,11 @@
-# Switching to 'bookworm' - it's slightly larger but much more stable for apt-get
-FROM python:3.10-bookworm
+# Use the full version of Python 3.10. 
+# It's larger, but it's the most stable and avoids 'apt-get' mirror errors.
+FROM python:3.10
 
-# Fix for Exit Code 100: We manually set the mirrors to a more reliable source
-RUN sed -i 's/deb.debian.org/ftp.us.debian.org/g' /etc/apt/sources.list && \
-    apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends \
+# These are the only two small libraries needed for OpenCV to show images
+RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
-    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -18,6 +16,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your code
 COPY . .
+
+# Set environment variables for Python
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 EXPOSE 8000
 
