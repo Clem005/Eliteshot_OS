@@ -1,24 +1,31 @@
-name: OS Build
+name: EliteShot OS Build
+
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # Triggers every time you push code to the main branch
+
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      packages: write # Necessary to save the image to your GitHub profile
+    
     steps:
-      - uses: actions/checkout@v3
-      - name: Login to GHCR
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }} # Built-in, no setup needed!
-      - name: Build and Push
+          password: ${{ secrets.GITHUB_TOKEN }} # Built-in GitHub key
+
+      - name: Build and Push to GHCR
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          # Note: Everything below is lowercase to avoid the "invalid tag" error
+          tags: ghcr.io/clem005/eliteshot_os:latest
